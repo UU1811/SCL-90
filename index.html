@@ -1,0 +1,1207 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?dfd91f35fbd41da95c47db1ce0331eeb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+ <script>
+        // 基础无限debugger实现
+        (function infiniteDebugger() {
+            // 使用try-catch包裹，防止被轻易捕获
+            try {
+                // 混淆变量名，增加阅读难度
+                const a = 'debugger';
+                
+                // 使用eval执行，避免静态分析直接发现
+                eval(a);
+                
+                // 递归调用，形成无限循环
+                infiniteDebugger();
+            } catch (e) {
+                // 即使发生异常，仍然继续调用，确保持续生效
+                setTimeout(infiniteDebugger, 0);
+            }
+        })();
+
+        // 增强版防调试 - 随机触发debugger
+        (function antiDebug() {
+            // 随机时间间隔，使调试更困难
+            const delay = Math.random() * 100 + 50;
+            
+            // 使用IIFE和闭包增加混淆度
+            (function() {
+                const b = ['d', 'e', 'b', 'u', 'g', 'g', 'e', 'r'].join('');
+                if (Math.random() > 0.3) { // 随机条件，不是每次都执行
+                    try {
+                        new Function(b)(); // 使用Function构造函数执行debugger
+                    } catch (e) {}
+                }
+            })();
+            
+            // 继续循环
+            setTimeout(antiDebug, delay);
+        })();
+
+        // 检测调试工具打开的辅助函数
+        function detectDebug() {
+            const start = performance.now();
+            // 执行一些无意义的操作
+            for (let i = 0; i < 1000; i++) {
+                Math.sqrt(i);
+            }
+            const end = performance.now();
+            
+            // 如果执行时间过长，可能是在调试
+            return end - start > 10;
+        }
+
+        // 结合调试检测的增强保护
+        setInterval(() => {
+            if (detectDebug()) {
+                // 如果检测到调试，增加debugger频率
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => {
+                        eval('debugger');
+                    }, i * 20);
+                }
+            }
+        }, 500);
+    </script>
+    <script>
+// 防止查看源代码的保护措施
+(function() {
+  // 检测右键点击
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    return false;
+  });
+  
+  // 检测F12、Ctrl+Shift+I、Ctrl+U等快捷键
+  document.addEventListener('keydown', function(e) {
+    // F12
+    if (e.key === 'F12') {
+      e.preventDefault();
+      showAntiDebugMessage();
+    }
+    
+    // Ctrl+Shift+I
+    if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+      e.preventDefault();
+      showAntiDebugMessage();
+    }
+    
+    // Ctrl+U (查看源代码)
+    if (e.ctrlKey && e.key === 'u') {
+      e.preventDefault();
+      showAntiDebugMessage();
+    }
+    
+    // Ctrl+Shift+C
+    if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+      e.preventDefault();
+      showAntiDebugMessage();
+    }
+    
+    // Ctrl+Shift+J
+    if (e.ctrlKey && e.shiftKey && e.key === 'J') {
+      e.preventDefault();
+      showAntiDebugMessage();
+    }
+    
+    // Shift+F10 (模拟右键)
+    if (e.shiftKey && e.key === 'F10') {
+      e.preventDefault();
+      showAntiDebugMessage();
+    }
+  });
+  
+  // 检测调试器
+  function detectDebugger() {
+    const start = performance.now();
+    debugger;
+    const end = performance.now();
+    
+    if (end - start > 100) {
+      showAntiDebugMessage();
+    }
+  }
+  
+  // 定期检测调试器
+  setInterval(detectDebugger, 1000);
+  
+  // 显示防调试信息
+  function showAntiDebugMessage() {
+    const overlay = document.createElement('div');
+    overlay.className = 'anti-debug-overlay';
+    overlay.innerHTML = `
+      <div>
+        <p>检测到尝试查看源代码或调试行为</p>
+        <p>知识产权，未经授权不得复制</p>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+    
+    // 5秒后移除提示，但仍保持保护
+    setTimeout(() => {
+      if (overlay.parentNode) {
+        overlay.parentNode.removeChild(overlay);
+      }
+    }, 5000);
+  }
+})();
+    </script>
+  <title>SCL-90症状自评量表</title>
+ 
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      user-select: none;
+    }
+
+    body {
+      background-color: #f0f7f0;
+      color: #333;
+      line-height: 1.6;
+      font-size: 16px;
+      -webkit-touch-callout: none;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .domain-restriction {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      display: none;
+    }
+
+    .domain-restriction h2 {
+      color: #dc3545;
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+
+    .domain-restriction p {
+      color: #666;
+      font-size: 16px;
+    }
+
+    .page-container {
+      min-height: 100vh;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .card {
+      background-color: #fff;
+      width: 100%;
+      max-width: 900px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .progress-container {
+      width: 100%;
+      height: 6px;
+      background-color: #f0f0f0;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background-color: #5cb85c;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .countdown {
+      display: none;
+      text-align: right;
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 10px;
+      height: 20px;
+    }
+
+    .content {
+      padding: 20px 15px;
+    }
+
+    h1, h2, h3 {
+      color: #2c3e50;
+      margin-bottom: 16px;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-top: 5px;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-size: 17px;
+      margin: 20px 0 15px;
+      text-align: left;
+    }
+
+    .intro-section {
+      padding: 20px 15px;
+      text-align: center;
+      display: block;
+    }
+
+    .intro-content {
+      margin-bottom: 20px;
+    }
+
+    .intro-text {
+      margin-bottom: 20px;
+      line-height: 1.7;
+      text-align: left;
+      font-size: 15px;
+    }
+
+    .intro-list {
+      text-align: left;
+      margin: 15px 0 20px 20px;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .intro-list li {
+      margin-bottom: 8px;
+    }
+
+    .question-number {
+      font-size: 15px;
+      color: #666;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .question-text-container {
+      height: calc(2em * 1.7);
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .question-text {
+      font-size: 17px;
+      line-height: 1.7;
+      color: #34495e;
+      padding: 10px;
+      background-color: #f8faf8;
+      border-radius: 8px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .question-text.long-text::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 30%;
+      height: 1.7em;
+      background: linear-gradient(to right, rgba(248, 250, 248, 0), rgba(248, 250, 248, 1) 70%);
+      pointer-events: none;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .option {
+      padding: 14px 15px;
+      border-radius: 8px;
+      background-color: #ffffff;
+      border: 1px solid #e9ecef;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+    }
+
+    .option:hover {
+      background-color: #f9f9f9;
+      transform: translateX(3px);
+    }
+
+    .option.active {
+      background-color: #e8f5e9;
+      border-color: #5cb85c;
+      color: #2c3e50;
+      font-weight: 500;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .option:active {
+      background-color: #dcedc8;
+      border-color: #4caf50;
+    }
+
+    .option-letter {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: #e9ecef;
+      color: #666;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+      flex-shrink: 0;
+      font-weight: 500;
+    }
+
+    .option.active .option-letter {
+      background-color: #5cb85c;
+      color: white;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 12px 0;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      flex: 1;
+      font-size: 16px;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-prev {
+      background-color: #e9ecef;
+      color: #495057;
+    }
+
+    .btn-prev:active {
+      background-color: #d6d8db;
+    }
+
+    .btn-next {
+      background-color: #5cb85c;
+      color: white;
+      display: none;
+    }
+
+    .btn-next:active {
+      background-color: #4caf50;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-prev:hover {
+      background-color: #dee2e6;
+    }
+
+    .btn-next:hover {
+      background-color: #4cae4c;
+    }
+
+    .btn-start, .btn-restart {
+      background-color: #5cb85c;
+      color: white;
+      margin: 15px auto;
+      display: block;
+      padding: 14px 24px;
+      font-size: 17px;
+      width: 100%;
+      max-width: 300px;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-start:active, .btn-restart:active {
+      background-color: #4caf50;
+    }
+
+    .btn-restart {
+      background-color: #4cae4c;
+      margin-top: 25px;
+    }
+
+    .btn-restart:hover {
+      background-color: #3d913d;
+    }
+
+    .result-section {
+      display: none;
+    }
+
+    .result-card {
+      padding: 20px 15px;
+    }
+
+    .total-score {
+      text-align: center;
+      margin: 20px 0;
+      padding: 15px;
+      background-color: #f8f9fa;
+      border-radius: 10px;
+    }
+
+    .total-score-value {
+      font-size: 26px;
+      font-weight: 700;
+      color: #5cb85c;
+      margin: 8px 0;
+    }
+
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      margin: 15px 0 20px;
+    }
+    
+    .factors-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin: 0 auto;
+    }
+
+    .factors-table th,
+    .factors-table td {
+      padding: 10px 8px;
+      text-align: center;
+      border-bottom: 1px solid #e9ecef;
+      white-space: nowrap;
+    }
+
+    .factors-table th:first-child,
+    .factors-table td:first-child {
+      text-align: left;
+    }
+
+    .factors-table th {
+      background-color: #f1f8e9;
+      font-weight: 600;
+    }
+
+    .factors-table tr:hover {
+      background-color: #f8f9fa;
+    }
+
+    .severity {
+      padding: 3px 6px;
+      border-radius: 4px;
+      color: white;
+      font-weight: 500;
+      font-size: 13px;
+      display: inline-block;
+    }
+
+    .severity-mild {
+      background-color: #5cb85c;
+    }
+
+    .severity-moderate-light {
+      background-color: #8bc34a;
+      color: #333;
+    }
+
+    .severity-moderate {
+      background-color: #ff9800;
+    }
+
+    .severity-severe {
+      background-color: #f44336;
+    }
+
+    .interpretation {
+      background-color: #e8f5e9;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 15px 0;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .factor-description {
+      margin-top: 5px;
+      font-size: 14px;
+      color: #666;
+      padding-left: 12px;
+      border-left: 2px solid #5cb85c;
+      line-height: 1.6;
+    }
+
+    .factor-description-container {
+      margin: 12px 0;
+      padding: 8px 0;
+      border-bottom: 1px solid #f1f8e9;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .question-container, .result-card, .intro-section {
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .anti-debug-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      font-size: 20px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .content, .intro-section, .result-card {
+        padding: 30px;
+      }
+      
+      .question-text {
+        font-size: 18px;
+        padding: 15px;
+      }
+      
+      .options {
+        gap: 12px;
+      }
+      
+      .option {
+        padding: 15px 20px;
+        font-size: 17px;
+      }
+      
+      .factors-table {
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .factors-table th,
+      .factors-table td {
+        padding: 8px 5px;
+        font-size: 13px;
+      }
+      
+      .severity {
+        padding: 2px 4px;
+        font-size: 12px;
+      }
+      
+      .question-text-container {
+        height: calc(2em * 1.7);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="domain-restriction" id="domainRestriction">
+    <h2>访问受限</h2>
+    <p>请通过官方渠道访问</p>
+  </div>
+  
+  <div class="page-container" id="mainContent">
+    <div class="card">
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <div class="intro-section" id="introSection">
+        <h1>SCL-90症状自评量表</h1>
+        <div class="intro-content" id="introContent">
+          <p class="intro-text">
+            SCL-90（Symptom Checklist 90）是一种常用的心理健康自评量表，包含90个项目，涉及感觉、情感、思维、意识、行为、生活习惯、人际关系、饮食睡眠等多个方面。</p>
+<p class="intro-text">量表只是辅助筛查工具，可以发现和了解自己的情绪状态，测试结果仅供参考，不代表实际诊断。
+          </p>
+          <p class="intro-text">请仔细阅读以下每一条陈述，并根据您最近一周内的实际感受，选择最适合的答案。</p>
+          <ul class="intro-list">
+            <li>A、从无：没有或很少时间有</li>
+            <li>B、很轻：少部分时间有</li>
+            <li>C、中等：相当多时间有</li>
+            <li>D、偏重：绝大部分时间有</li>
+            <li>E、严重：全部时间都有</li>
+          </ul>
+        </div>
+        <button class="btn btn-start" id="startBtn">开始测试</button>
+      </div>
+
+      <div class="content question-container hidden" id="questionContainer">
+        <div class="countdown" id="countdown"></div>
+        <div class="question-number">
+          <span>第 <span id="currentQuestionNum">1</span> 题</span>
+          <span>共 90 题</span>
+        </div>
+        <div class="question-text-container">
+          <div class="question-text" id="questionText"></div>
+        </div>
+        <div class="options" id="optionsContainer">
+          <div class="option" data-point="1" onclick="handleOptionSelect(this)" style="touch-action: manipulation;">
+            <span class="option-letter">A</span>
+            <span>从无</span>
+          </div>
+          <div class="option" data-point="2" onclick="handleOptionSelect(this)" style="touch-action: manipulation;">
+            <span class="option-letter">B</span>
+            <span>很轻</span>
+          </div>
+          <div class="option" data-point="3" onclick="handleOptionSelect(this)" style="touch-action: manipulation;">
+            <span class="option-letter">C</span>
+            <span>中等</span>
+          </div>
+          <div class="option" data-point="4" onclick="handleOptionSelect(this)" style="touch-action: manipulation;">
+            <span class="option-letter">D</span>
+            <span>偏重</span>
+          </div>
+          <div class="option" data-point="5" onclick="handleOptionSelect(this)" style="touch-action: manipulation;">
+            <span class="option-letter">E</span>
+            <span>严重</span>
+          </div>
+        </div>
+        <div class="button-group">
+          <button class="btn btn-prev" onclick="handlePrevQuestion()">
+            <span>&lt;&lt;</span> 上一题
+          </button>
+          <button class="btn btn-next" onclick="handleNextQuestion()">
+            下一题 <span>&gt;&gt;</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="result-section" id="resultSection">
+        <div class="result-card">
+          <h2>测试结果仅供参考，不作诊断使用</h2>
+          <div class="total-score">
+            <p>您的SCL-90总分</p>
+            <p class="total-score-value" id="totalScore"></p>
+            <p>单项平均分: <span id="averageScore"></span></p>
+          </div>
+          
+          <h3>各因子得分及测试情况</h3>
+          <div class="table-container">
+            <table class="factors-table">
+              <thead>
+                <tr>
+                  <th>因子名称</th>
+                  <th>总分</th>
+                  <th>平均分</th>
+                  <th>测试情况</th>
+                </tr>
+              </thead>
+              <tbody id="factorsTableBody">
+              </tbody>
+            </table>
+          </div>
+          
+          <div id="factorDescriptions">
+            <h3>因子解释说明</h3>
+          </div>
+          
+          <div class="interpretation">
+            <h3>结果解释</h3>
+<p>请用从容的心态来看待本次测试。无论分数如何，请一定记得，我们始终都在你身边。</p>
+<p>SCL-90 心理健康自评量表涵盖了情绪状态、思维模式、人际关系、生活习惯等多个维度，它就像一面温柔的镜子，能帮你更清晰地看见自己当下的心理状态。需要知道的是，量表得分仅仅是近期心理感受的投射。</p>
+<p>若某些因子得分较高，或许只是说明你最近在这些方面暂时感受到了压力或困扰，但这绝不等于你存在严重的问题。很多时候，短期的心理波动本就是生活的常态 —— 可能是学习的节奏、工作的挑战，或是人际交往中的小插曲带来的暂时影响。</p>
+<p>如果你发现自己在多个维度上长期感到不适，不妨多给自己一些关注：试着调整自己的作息规律，找到适合自己的放松方式，或是和信任的人好好倾诉聊聊。倘若情绪已经悄悄影响到了日常生活，且靠自己难以调节，也请不要犹豫，及时寻求专业的心理咨询或帮助，这并不是软弱，而是对自己的负责。</p>
+<p>要知道，心理健康和身体健康同样重要，而你，本就值得被好好关心与坚定支持。</p><br>
+            <p>测试情况分级标准：</p>
+            <ul style="margin: 10px 0 15px 20px;">
+              <li><span class="severity severity-mild">有点</span>：平均分1.0-2.0分，症状轻微或偶尔出现</li>
+              <li><span class="severity severity-moderate-light">轻微</span>：平均分2.0-3.0分，症状明显但不影响日常生活</li>
+              <li><span class="severity severity-moderate">中度</span>：平均分3.0-4.0分，症状明显且对日常生活有一定影响</li>
+              <li><span class="severity severity-severe">重度</span>：平均分4.0-5.0分，症状严重且明显影响日常生活</li>
+            </ul>
+            <p id="interpretationText"></p>
+          </div>
+          <!--
+          <div  class="btn btn-restart" style="text-align: center;" onclick="showCode()">点击领取专业分析师结果</div>
+          -->
+          <button class="btn btn-restart" onclick="restartTest()">重新测试</button>
+        </div>
+      </div>
+    </div>
+
+    
+  </div>
+<script>
+    /*
+    
+      // 域名限制
+      document.addEventListener('DOMContentLoaded', function() {
+        //const ALLOWED_DOMAIN = atob('bGZ0YW8udmlw=');
+        const currentDomain = window.location.hostname;
+        
+        //const isAllowed = currentDomain === ALLOWED_DOMAIN || currentDomain.endsWith('.' + ALLOWED_DOMAIN);
+        const isAllowed = true
+        const domainRestriction = document.getElementById('domainRestriction');
+        const mainContent = document.getElementById('mainContent');
+        
+        if (!isAllowed) {
+          domainRestriction.style.display = 'block';
+          mainContent.style.display = 'none';
+          
+          setTimeout(() => {
+            if (!isAllowed) {
+              document.body.innerHTML = domainRestriction.outerHTML;
+            }
+          }, 1000);
+        }
+      });
+    })();
+    */
+    
+    function showCode(){
+        document.getElementById('qrcode').src = "qrcode.jpg?a="+new Date().getTime();
+        document.getElementById('maskQrcode').style.display = "block";
+        document.getElementById('maskQrcode').style.opacity = "1";
+    }
+    function closeCode(){
+        document.getElementById('maskQrcode').style.display = "none";
+        document.getElementById('maskQrcode').style.opacity = "0";
+    }
+ 
+    const questionStr = '头痛；神经过敏，心中不踏实；头脑中有不必要的想法或字句盘旋；头晕或晕倒；对异性的兴趣减退；对旁人责备求全；感到别人能控制您的思想；责怪别人制造麻烦；忘性大；担心自己的衣饰整齐及仪态的端正；容易烦恼和激动；胸痛；害怕空旷的场所或街道；感到自己的精力下降，活动减慢；想结束自己的生命；听到旁人听不到的声音；发抖；感到大多数人都不可信任；胃口不好；容易哭泣；同异性相处时感到害羞不自在；感到受骗，中了圈套或有人想抓住您；无缘无故地突然感到害怕；自己不能控制地大发脾气；怕单独出门；经常责怪自己；腰痛；感到难以完成任务；感到孤独；感到苦闷；过分担忧；对事物不感兴趣；感到害怕；您的感情容易受到伤害；旁人能知道您的私下想法；感到别人不理解您、不同情您；感到人们对您不友好，不喜欢您；做事必须做得很慢以保证做得正确；心跳得很厉害；恶心或胃部不舒服；感到比不上他人；肌肉酸痛；感到有人在监视您、谈论您；难以入睡；做事必须反复检查；难以做出决定；怕乘电车、公共汽车、地铁或火车；呼吸有困难；一阵阵发冷或发热；因为感到害怕而避开某些东西、场合或活动；脑子变空了；身体发麻或刺痛；喉咙有梗塞感；感到前途没有希望；不能集中注意力；感到身体的某一部分软弱无力；感到紧张或容易紧张；感到手或脚发重；想到死亡的事；吃得太多；当别人看着您或谈论您时感到不自在；有一些不属于您自己的想法；有想打人或伤害他人的冲动；醒得太早；必须反复洗手、点数；睡得不稳不深；有想摔坏或破坏东西的想法；有一些别人没有的想法；感到对别人神经过敏；在商店或电影院等人多的地方感到不自在；感到任何事情都很困难；一阵阵恐惧或惊恐；感到公共场合吃东西很不舒服；经常与人争论；单独一人时神经很紧张；别人对您的成绩没有做出恰当的评价；即使和别人在一起也感到孤单；感到坐立不安心神不定；感到自己没有什么价值；感到熟悉的东西变成陌生或不像是真的；大叫或摔东西；害怕会在公共场合晕倒；感到别人想占您的便宜；为一些有关性的想法而很苦恼；您认为应该因为自己的过错而受到惩罚；感到要很快把事情做完；感到自己的身体有严重问题；从未感到和其他人很亲近；感到自己有罪；感到自己的脑子有毛病';
+    
+    const interpretationText = '按中国常模结果，如果您的SCL90总分超过160分，单项均分超过2分就应作进一步检查，标准分为大于200分说明你有很明显的心理问题，可求助于心理咨询，大于250分则比较严重，需要作医学上的详细检查，很可能要做针对性的心理治疗或在医生的指导下服药。';
+    
+    const factorGroups = [
+      {
+        name: '躯体化', 
+        questionIndices: [0, 3, 11, 26, 39, 41, 47, 48, 51, 52, 55, 57], 
+        total: 0,
+        description: '主要反映身体上的不适症状，如头痛、胸痛、肌肉酸痛等身体表现。高分可能表明存在明显的身体不适或躯体化症状，即心理压力转化为身体症状表现出来。'
+      },
+      {
+        name: '强迫症状', 
+        questionIndices: [2, 8, 9, 27, 37, 44, 45, 50, 54, 64], 
+        total: 0,
+        description: '主要指那些明知没有必要，但又无法摆脱的无意义的思想、冲动和行为。高分可能表明有明显的强迫观念或行为，如反复思考、反复检查等。'
+      },
+      {
+        name: '人际关系敏感', 
+        questionIndices: [5, 20, 33, 35, 36, 40, 60, 68, 72], 
+        total: 0,
+        description: '主要指某些个人不自在与自卑感，特别是与其他人相比较时更加突出。高分可能表明在人际交往中存在明显的不适应感、自卑感或对他人评价过度敏感。'
+      },
+      {
+        name: '抑郁症状', 
+        questionIndices: [4, 13, 14, 19, 21, 25, 28, 29, 30, 31, 53, 70, 78], 
+        total: 0,
+        description: '主要反映抑郁情绪，包括对生活的兴趣减退、缺乏动力、感到孤独、苦闷、甚至有自杀念头等。高分可能表明存在明显的抑郁倾向或抑郁状态。'
+      },
+      {
+        name: '焦虑症状', 
+        questionIndices: [1, 16, 22, 32, 38, 56, 71, 77, 79, 85], 
+        total: 0,
+        description: '主要反映焦虑情绪，包括神经过敏、紧张、害怕、发抖等。高分可能表明存在明显的焦虑情绪或焦虑状态，表现为过度担忧和紧张不安。'
+      },
+      {
+        name: '敌对症状', 
+        questionIndices: [10, 23, 62, 66, 73, 80], 
+        total: 0,
+        description: '主要从思维、情感及行为三方面来反映敌对表现，包括容易烦恼和激动、有想打人或伤害他人的冲动等。高分可能表明存在明显的敌对情绪或攻击性行为倾向。'
+      },
+      {
+        name: '恐怖症状', 
+        questionIndices: [12, 24, 46, 49, 69, 74, 81], 
+        total: 0,
+        description: '主要反映对某些特定环境或事物的恐惧，如害怕空旷的场所、怕乘公共交通工具等。高分可能表明存在明显的恐惧症状或特定恐惧症。'
+      },
+      {
+        name: '偏执症状', 
+        questionIndices: [7, 17, 42, 67, 75, 82], 
+        total: 0,
+        description: '主要指猜疑和关系妄想等。包括感到大多数人都不可信任、感到有人在监视您、谈论您等。高分可能表明存在明显的偏执观念，对他人持怀疑态度。'
+      },
+      {
+        name: '精神病性', 
+        questionIndices: [6, 15, 34, 61, 76, 83, 84, 86, 87, 89], 
+        total: 0,
+        description: '主要反映一些精神病性症状，如听到旁人听不到的声音、感到别人能控制您的思想、有一些别人没有的想法等。高分可能表明存在某些精神病性症状，需要专业评估。'
+      },
+      {
+        name: '睡眠饮食', 
+        questionIndices: [18, 43, 58, 59, 63, 65, 88], 
+        total: 0,
+        description: '主要反映睡眠和饮食方面的问题，如胃口不好、难以入睡、睡得不稳不深、吃得太多等。高分可能表明存在明显的睡眠或饮食障碍，这往往是心理压力的重要表现。'
+      },
+    ];
+
+    let appState = {
+      questions: [],
+      currentQuestionIndex: 0,
+      totalQuestions: 0,
+      isTestStarted: false,
+      isTestCompleted: false,
+      isAutoJump: false
+    };
+
+    const domElements = {
+      introSection: document.getElementById('introSection'),
+      introContent: document.getElementById('introContent'),
+      startBtn: document.getElementById('startBtn'),
+      questionContainer: document.getElementById('questionContainer'),
+      resultSection: document.getElementById('resultSection'),
+      currentQuestionNum: document.getElementById('currentQuestionNum'),
+      questionText: document.getElementById('questionText'),
+      questionTextContainer: document.querySelector('.question-text-container'),
+      optionsContainer: document.getElementById('optionsContainer'),
+      progressBar: document.getElementById('progressBar'),
+      totalScore: document.getElementById('totalScore'),
+      averageScore: document.getElementById('averageScore'),
+      factorsTableBody: document.getElementById('factorsTableBody'),
+      factorDescriptions: document.getElementById('factorDescriptions'),
+      interpretationText: document.getElementById('interpretationText'),
+      countdown: document.getElementById('countdown')
+    };
+
+    function getSeverityLevel(average) {
+      if (average < 2.0) {
+        return { level: '有点', class: 'severity-mild' };
+      } else if (average < 3.0) {
+        return { level: '轻微', class: 'severity-moderate-light' };
+      } else if (average < 4.0) {
+        return { level: '中度', class: 'severity-moderate' };
+      } else {
+        return { level: '重度', class: 'severity-severe' };
+      }
+    }
+
+    function initQuestions() {
+      const questionArray = questionStr.split('；')
+        .filter(questionText => questionText.trim() !== '')
+        .map((questionText, index) => {
+          return {
+            index: index,
+            text: questionText,
+            score: null
+          };
+        });
+      
+      appState.questions = questionArray;
+      appState.totalQuestions = questionArray.length;
+      
+      try{
+          const localappState = localStorage.getItem("appState")
+          if(localappState){
+             appState = JSON.parse(localappState);
+             appState.isAutoJump=false;
+             if(appState.currentQuestionIndex > 0 ){
+               if(appState.currentQuestionIndex<90){
+                    appState.currentQuestionIndex = appState.currentQuestionIndex+1;
+               }
+               timeShow(3)
+             }
+          }
+      }catch(e){
+          console.log(e)
+      }
+    }
+    function timeShow(number) {
+        domElements.startBtn.innerHTML= "返回测试结果"+number+"...";
+        if(number<=0){
+            startTest()
+            domElements.startBtn.innerHTML= "开始测试"
+            return;
+        }
+        setTimeout(()=>{
+            timeShow(--number)
+        },1000);
+    }
+
+    function updateQuestionDisplay() {
+      if(appState.currentQuestionIndex>=90){
+          completeTest()
+          return;
+      }
+      const currentQuestion = appState.questions[appState.currentQuestionIndex];
+
+      domElements.currentQuestionNum.textContent = appState.currentQuestionIndex + 1;
+      domElements.questionText.textContent = currentQuestion.text;
+      
+      checkQuestionLength();
+      
+      const progressPercentage = ((appState.currentQuestionIndex + 1) / appState.totalQuestions) * 100;
+      domElements.progressBar.style.width = `${progressPercentage}%`;
+      
+      domElements.countdown.textContent = '';
+      
+      // 清除所有选项的高亮状态
+      const options = domElements.optionsContainer.querySelectorAll('.option');
+      options.forEach(option => {
+        option.classList.remove('active');
+      });
+      
+      // 只给当前题目的已选项添加高亮
+      if (currentQuestion.score !== null) {
+        options.forEach(option => {
+          if (parseInt(option.dataset.point) === currentQuestion.score) {
+            option.classList.add('active');
+          }
+        });
+      }
+      
+      const prevBtn = document.querySelector('.btn-prev');
+      prevBtn.disabled = appState.currentQuestionIndex === 0;
+      prevBtn.style.opacity = appState.currentQuestionIndex === 0 ? 0.5 : 1;
+      prevBtn.style.cursor = appState.currentQuestionIndex === 0 ? 'not-allowed' : 'pointer';
+    }
+
+    function checkQuestionLength() {
+      const container = domElements.questionTextContainer;
+      const textElement = domElements.questionText;
+      
+      textElement.classList.remove('long-text');
+      
+      if (textElement.scrollHeight > container.clientHeight) {
+        textElement.classList.add('long-text');
+      }
+    }
+
+    function handleOptionSelect(optionElement) {
+      if (appState.isAutoJump) return;
+      
+      // 清除所有选项的高亮状态
+      const options = domElements.optionsContainer.querySelectorAll('.option');
+      options.forEach(option => option.classList.remove('active'));
+      
+      // 只给当前选中项添加高亮
+      optionElement.classList.add('active');
+      
+      const score = parseInt(optionElement.dataset.point);
+      appState.questions[appState.currentQuestionIndex].score = score;
+      
+      startAutoJump();
+      
+      localStorage.setItem("appState",JSON.stringify(appState))
+    }
+
+    function startAutoJump() {
+      appState.isAutoJump = true;
+      let seconds = 0.3;
+      
+      setTimeout(() => {
+        handleNextQuestion();
+        appState.isAutoJump = false;
+      }, seconds * 1000);
+    }
+
+    function handlePrevQuestion() {
+      if (appState.isAutoJump) {
+        appState.isAutoJump = false;
+        domElements.countdown.textContent = '';
+      }
+      
+      if (appState.currentQuestionIndex > 0) {
+        appState.currentQuestionIndex--;
+        updateQuestionDisplay();
+      }
+    }
+
+    function handleNextQuestion() {
+      if (appState.currentQuestionIndex === appState.totalQuestions - 1) {
+        completeTest();
+        return;
+      }
+      
+      appState.currentQuestionIndex++;
+      updateQuestionDisplay();
+    }
+
+    function completeTest() {
+      appState.isTestCompleted = true;
+      
+      let totalScore = 0;
+      appState.questions.forEach(question => {
+        totalScore += question.score;
+      });
+      
+      factorGroups.forEach(group => {
+        group.total = 0;
+        group.questionIndices.forEach(index => {
+          if (index < appState.questions.length) {
+            group.total += appState.questions[index].score;
+          }
+        });
+      });
+      
+      showResults(totalScore);
+    }
+
+    function showResults(totalScore) {
+      domElements.questionContainer.classList.add('hidden');
+      domElements.resultSection.style.display = 'block';
+      
+      const averageScore = (totalScore / appState.totalQuestions).toFixed(2);
+      domElements.totalScore.textContent = totalScore;
+      domElements.averageScore.textContent = averageScore;
+      
+      domElements.interpretationText.textContent = interpretationText;
+      
+      domElements.factorsTableBody.innerHTML = '';
+      factorGroups.forEach(group => {
+        const validQuestions = group.questionIndices.filter(index => index < appState.questions.length);
+        const average = (group.total / validQuestions.length);
+        const severity = getSeverityLevel(average);
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${group.name}</td>
+          <td>${group.total}</td>
+          <td>${average.toFixed(2)}</td>
+          <td><span class="severity ${severity.class}">${severity.level}</span></td>
+        `;
+        domElements.factorsTableBody.appendChild(row);
+      });
+      
+      domElements.factorDescriptions.innerHTML = '<h3>因子解释说明</h3>';
+      factorGroups.forEach(group => {
+        const validQuestions = group.questionIndices.filter(index => index < appState.questions.length);
+        const average = (group.total / validQuestions.length);
+        const severity = getSeverityLevel(average);
+        
+        const descriptionDiv = document.createElement('div');
+        descriptionDiv.className = 'factor-description-container';
+        
+        descriptionDiv.innerHTML = `
+          <div style="display: flex; align-items: center; margin-bottom: 5px; flex-wrap: wrap;">
+            <strong>${group.name}</strong>
+            <span class="severity ${severity.class}" style="margin-left: 10px;">${severity.level}</span>
+          </div>
+          <p class="factor-description">${group.description}</p>
+        `;
+        
+        domElements.factorDescriptions.appendChild(descriptionDiv);
+      });
+    }
+
+    function startTest() {
+      domElements.introContent.style.display = 'none';
+      domElements.startBtn.style.display = 'none';
+      
+      domElements.questionContainer.classList.remove('hidden');
+      
+      appState.isTestStarted = true;
+      updateQuestionDisplay();
+    }
+
+    function restartTest() {
+      localStorage.removeItem("appState")
+      appState = {
+        ...appState,
+        questions: [],
+        currentQuestionIndex: 0,
+        totalQuestions: 0,
+        isTestStarted: false,
+        isTestCompleted: false,
+        isAutoJump: false
+      };
+      
+      initQuestions();
+      
+      domElements.resultSection.style.display = 'none';
+      domElements.introSection.classList.remove('hidden');
+      
+      domElements.introContent.style.display = 'block';
+      domElements.startBtn.style.display = 'block';
+    }
+
+    function initApp() {
+      initQuestions();
+      
+      domElements.startBtn.addEventListener('click', startTest);
+      
+      document.addEventListener('keydown', (e) => {
+        if (!appState.isTestStarted || appState.isTestCompleted) return;
+        
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          handlePrevQuestion();
+        }
+        
+        if ((e.key === 'ArrowRight' || e.key === 'ArrowDown') && !appState.isAutoJump) {
+          if (appState.questions[appState.currentQuestionIndex].score !== null) {
+            handleNextQuestion();
+          }
+        }
+        
+        if (e.key >= '1' && e.key <= '5' && !appState.isAutoJump) {
+          const options = domElements.optionsContainer.querySelectorAll('.option');
+          handleOptionSelect(options[parseInt(e.key) - 1]);
+        }
+      });
+
+      const options = domElements.optionsContainer.querySelectorAll('.option');
+      options.forEach(option => {
+        option.style.touchAction = 'manipulation';
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', initApp);
+  </script>
+    </body>
+</html>
